@@ -299,6 +299,153 @@
 # endif
 #endif
 
+#ifdef __ANDROID__
+/* Most of these are inside an #if 0 in bionic. Boo.
+ * https://chromium.googlesource.com/android_tools/+/b12d410c0ee23385da78e6c9f353d28fd992e0bd%5E/ndk/platforms/android-4/arch-x86/usr/include/sys/ioctl_compat.h
+ */
+#ifdef TANDEM
+#  define         TANDEM          0x00000001      /* send stopc on out q full */
+#endif
+#ifndef CBREAK
+#  define         CBREAK          0x00000002      /* half-cooked mode */
+#endif
+#ifndef LCASE
+#  define         LCASE           0x00000004      /* simulate lower case */
+#endif
+#ifndef ECHO
+#  define         ECHO            0x00000008      /* enable echoing */
+#endif
+#ifndef CRMOD
+#  define         CRMOD           0x00000010      /* map \r to \r\n on output */
+#endif
+#ifndef RAW
+#  define         RAW             0x00000020      /* no i/o processing */
+#endif
+#ifndef ODDP
+#  define         ODDP            0x00000040      /* get/send odd parity */
+#endif
+#ifndef EVENP
+#  define         EVENP           0x00000080      /* get/send even parity */
+#endif
+#ifndef ANYP
+#  define         ANYP            0x000000c0      /* get any parity/send none */
+#endif
+#ifndef NLDELAY
+#  define         NLDELAY         0x00000300      /* \n delay */
+#endif
+#ifndef NL0
+#  define                 NL0     0x00000000
+#endif
+#ifndef NL1
+#  define                 NL1     0x00000100      /* tty 37 */
+#endif
+#ifndef NL2
+#  define                 NL2     0x00000200      /* vt05 */
+#endif
+#ifndef NL3
+#  define                 NL3     0x00000300
+#endif
+#ifndef TBDELAY
+#  define         TBDELAY         0x00000c00      /* horizontal tab delay */
+#endif
+#ifndef TAB0
+#  define                 TAB0    0x00000000
+#endif
+#ifndef TAB1
+#  define                 TAB1    0x00000400      /* tty 37 */
+#endif
+#ifndef TAB2
+#  define                 TAB2    0x00000800
+#endif
+#ifndef XTABS
+#  define         XTABS           0x00000c00      /* expand tabs on output */
+#endif
+#ifndef CRDELAY
+#  define         CRDELAY         0x00003000      /* \r delay */
+#endif
+#ifndef CR0
+#  define                 CR0     0x00000000
+#endif
+#ifndef CR1
+#  define                 CR1     0x00001000      /* tn 300 */
+#endif
+#ifndef CR2
+#  define                 CR2     0x00002000      /* tty 37 */
+#endif
+#ifndef CR3
+#  define                 CR3     0x00003000      /* concept 100 */
+#endif
+#ifndef VTDELAY
+#  define         VTDELAY         0x00004000      /* vertical tab delay */
+#endif
+#ifndef FF0
+#  define                 FF0     0x00000000
+#endif
+#ifndef FF1
+#  define                 FF1     0x00004000      /* tty 37 */
+#endif
+#ifndef BSDELAY
+#  define         BSDELAY         0x00008000      /* \b delay */
+#endif
+#ifndef BS0
+#  define                 BS0     0x00000000
+#endif
+#ifndef BS1
+#  define                 BS1     0x00008000
+#endif
+#ifndef ALLDELAY
+#  define         ALLDELAY        (NLDELAY|TBDELAY|CRDELAY|VTDELAY|BSDELAY)
+#endif
+#ifndef CRTBS
+#  define         CRTBS           0x00010000      /* do backspacing for crt */
+#endif
+#ifndef PRTERA
+#  define         PRTERA          0x00020000      /* \ ... / erase */
+#endif
+#ifndef CRTERA
+#  define         CRTERA          0x00040000      /* " \b " to wipe out char */
+#endif
+#ifndef TILDE
+#  define         TILDE           0x00080000      /* hazeltine tilde kludge */
+#endif
+#ifndef MDMBUF
+#  define         MDMBUF          0x00100000      /* DTR/DCD hardware flow control */
+#endif
+#ifndef LITOUT
+#  define         LITOUT          0x00200000      /* literal output */
+#endif
+#ifndef TOSTOP
+#  define         TOSTOP          0x00400000      /* stop background jobs on output */
+#endif
+#ifndef FLUSHO
+#  define         FLUSHO          0x00800000      /* output being flushed (state) */
+#endif
+#ifndef NOHANG
+#  define         NOHANG          0x01000000      /* (no-op) was no SIGHUP on carrier drop */
+#endif
+#ifndef L001000
+#  define         L001000         0x02000000
+#endif
+#ifndef CRTKIL
+#  define         CRTKIL          0x04000000      /* kill line with " \b " */
+#endif
+#ifndef PASS8
+#  define         PASS8           0x08000000
+#endif
+#ifndef CTLECH
+#  define         CTLECH          0x10000000      /* echo control chars as ^X */
+#endif
+#ifndef PENDIN
+#  define         PENDIN          0x20000000      /* re-echo input buffer at next read */
+#endif
+#ifndef DECCTQ
+#  define         DECCTQ          0x40000000      /* only ^Q starts after ^S */
+#endif
+#ifndef NOFLSH
+#  define         NOFLSH          0x80000000      /* don't flush output on signal */
+#endif
+#endif /*__ANDROID__*/
+
 #ifdef DONT_USE_TERMIOS
 # ifdef I_TERMIOS
 #  undef I_TERMIOS
