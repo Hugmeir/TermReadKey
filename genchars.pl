@@ -384,9 +384,9 @@ XS(XS_Term__ReadKey_GetControlChars)
 	        else {
 	            file = IoIFP(sv_2io(ST(0)));
 	        }
-        if(ioctl(fileno(PerlIO_file),TIOCGETP,&s.s1) ".($tchars?"
- 	||ioctl(fileno(PerlIO_file),TIOCGETC,&s.s2)  ":'').($ltchars?"
-        ||ioctl(fileno(PerlIO_file),TIOCGLTC,&s.s3)  ":'')."
+        if(ioctl(PerlIO_fileno(file),TIOCGETP,&s.s1) ".($tchars?"
+ 	||ioctl(PerlIO_fileno(file),TIOCGETC,&s.s2)  ":'').($ltchars?"
+        ||ioctl(PerlIO_fileno(file),TIOCGLTC,&s.s3)  ":'')."
 			)
 			croak(\"Unable to read terminal settings in GetControlChars\");
 		else {
@@ -418,8 +418,8 @@ XS(XS_Term__ReadKey_SetControlChars)
 	        }
 
 	        if(ioctl(PerlIO_fileno(file),TIOCGETP,&s.s1) ".($tchars?"
-	 	||ioctl(fileno(PerlIO_file),TIOCGETC,&s.s2)  ":'').($ltchars?"
-	        ||ioctl(fileno(PerlIO_file),TIOCGLTC,&s.s3)  ":'')."
+	 	||ioctl(PerlIO_fileno(file),TIOCGETC,&s.s2)  ":'').($ltchars?"
+	        ||ioctl(PerlIO_fileno(file),TIOCGLTC,&s.s3)  ":'')."
 			)
 			croak(\"Unable to read terminal settings in SetControlChars\");
 		else {
@@ -439,9 +439,9 @@ XS(XS_Term__ReadKey_SetControlChars)
 		croak(\"Invalid control character passed to SetControlChars\");
 				
 			}
-	        if(ioctl(fileno(PerlIO_file),TIOCSETN,&s.s1) ".($tchars?"
-	        ||ioctl(fileno(PerlIO_file),TIOCSETC,&s.s2) ":'').($ltchars?"
-	        ||ioctl(fileno(PerlIO_file),TIOCSLTC,&s.s3) ":'')."
+	        if(ioctl(PerlIO_fileno(file),TIOCSETN,&s.s1) ".($tchars?"
+	        ||ioctl(PerlIO_fileno(file),TIOCSETC,&s.s2) ":'').($ltchars?"
+	        ||ioctl(PerlIO_fileno(file),TIOCSLTC,&s.s3) ":'')."
 			) croak(\"Unable to write terminal settings in SetControlChars\");
 		}
 	}
